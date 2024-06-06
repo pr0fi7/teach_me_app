@@ -1,0 +1,21 @@
+<!-- templates/cards/box.html -->
+
+{% extends "cards/base.html" %}
+{% load humanize %}
+
+{% block content %}
+    {{ cards | length }} Card{{ cards | pluralize }} in total.
+
+    <h2>Cards in Box {{ current_box }}</h2>
+
+    <form action="{% url 'delete-box' current_box %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" onclick="return confirm('Are you sure you want to delete all cards in this box?');">🗑 Delete Box</button>
+    </form>
+
+    <hr>
+
+    {% for card in cards %}
+        {% include "cards/card.html" with card=card %}
+    {% endfor %}
+{% endblock %}

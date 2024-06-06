@@ -1,0 +1,35 @@
+<!-- templates/cards/train_cards.html -->
+
+{% extends "cards/base.html" %}
+
+{% block content %}
+    <h2>Train with Cards</h2>
+    
+    <p>Question: {{ card.question }}</p>
+    
+    {% if show_answer %}
+        <p>Answer: {{ card.answer }}</p>
+        {% if solved %}
+            <p>✅ You knew this card!</p>
+        {% else %}
+            <p>❌ You didn't know this card!</p>
+        {% endif %}
+        <a href="{% url 'card-train' card.box %}" class="button">Next Card</a>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="card_id" value="{{ card.id }}">
+            <input type="hidden" name="solved" value="true">
+            <input type="submit" value="✅ I know">
+        </form>
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="card_id" value="{{ card.id }}">
+            <input type="hidden" name="solved" value="false">
+            <input type="submit" value="❌ I don't know">
+        </form>
+    {% endif %}
+    
+    <a href="{% url 'card-list' %}" class="cancel-button">Cancel</a>
+{% endblock %}

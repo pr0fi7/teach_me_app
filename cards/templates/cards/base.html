@@ -1,0 +1,116 @@
+<!-- templates/cards/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Flashcards</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <style>
+        :root {
+            --accent: #6e48ad;
+            --accent-bg: white;
+            --bg: #fff;
+            --text: #212121;
+            --text-light: #585858;
+            --border: #d8dae1;
+            --code: #d81b60;
+            --preformatted: #444;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+        }
+
+        header {
+            background-color: var(--accent);
+            color: var(--accent-bg);
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: var(--accent-bg);
+            text-decoration: none;
+            margin: 0 0.5em;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 1em;
+            margin-bottom: 1em;
+        }
+
+        article {
+            background-color: var(--accent-bg);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 1em;
+            margin: 1em 0;
+        }
+
+        h1 {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            color: var(--text);
+        }
+
+        h2 {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            color: var(--text);
+        }
+
+        h2, h4 {
+            margin-top: 0;
+        }
+
+        hr {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        button,
+        a[role="button"] {
+            background-color: var(--accent);
+            color: var(--accent-bg);
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .file_upload {
+            background: #d81b60;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Flashcards App</h1>
+        {% include "cards/navigation.html" %}
+    </header>
+    
+    <main>
+        {% block content %}
+            <h2>Welcome to your Flashcards app!</h2>
+        {% endblock content %}
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+<!-- templates/cards/confirm_delete_box.html -->
+
+{% extends "cards/base.html" %}
+
+{% block content %}
+    <h2>Confirm Delete Box {{ box_num }}</h2>
+    <p>Are you sure you want to delete all cards in Box {{ box_num }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+    </form>
+    <a href="{% url 'card-list' %}">Cancel</a>
+{% endblock %}

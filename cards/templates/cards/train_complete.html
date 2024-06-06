@@ -1,0 +1,9 @@
+<!-- templates/cards/train_complete.html -->
+
+{% extends "cards/base.html" %}
+
+{% block content %}
+    <h2>Training Complete</h2>
+    <p>Congratulations, you have reviewed all cards!</p>
+    <a href="{% url 'card-list' %}">Back to Card List</a>
+{% endblock %}

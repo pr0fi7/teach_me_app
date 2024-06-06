@@ -1,0 +1,40 @@
+<!-- templates/cards/card_list.html -->
+
+{% extends "cards/base.html" %}
+{% load humanize %}
+
+{% block content %}
+    <h2>All Cards</h2>
+
+    <div class="button-container">
+        <form action="{% url 'card-create' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">✨ Create New Card</button>
+        </form>
+
+        <form action="{% url 'document-upload' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="file_upload">Upload a document</button>
+        </form>
+
+        <form action="{% url 'select-box' %}" method="get" style="display:inline;">
+            <button type="submit">Train Cards</button>
+        </form>
+    </div>
+
+    <hr>
+
+    {{ cards | length }} Card{{ cards | pluralize }} in total.
+
+    {% for box, cards in boxes.items %}
+        <h3>Box {{ box }}</h3>
+        <form action="{% url 'delete-box' box %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" onclick="return confirm('Are you sure you want to delete all cards in this box?');">🗑 Delete Box</button>
+        </form>
+        {% for card in cards %}
+            {% include "cards/card.html" with card=card %}
+        {% endfor %}
+    {% endfor %}
+    
+{% endblock %}

@@ -1,0 +1,13 @@
+<!-- templates/cards/select_box.html -->
+
+{% extends "cards/base.html" %}
+
+{% block content %}
+    <h2>Select a Box to Train</h2>
+    <ul>
+        {% for box in boxes %}
+            <li><a href="{% url 'card-train' box %}">Box {{ box }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'card-list' %}">Back to Card List</a>
+{% endblock %}
